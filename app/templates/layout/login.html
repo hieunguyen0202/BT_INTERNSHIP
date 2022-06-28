@@ -1,0 +1,197 @@
+{% extends 'layout/base.html' %}
+{% block title %}Login{% endblock %}
+
+{% block style %}
+               .image {
+                width: 55%;
+                height: 700px;
+                float: left;
+
+}
+              .box {
+                width: 45%;
+                height: 700px;
+                color: azure;
+                background-color: rgb(56, 68, 74);
+                float: left;
+
+
+}
+
+@media (max-width: 600px) {
+  nav, article {
+    width: 100%;
+    height: auto;
+  }
+}
+              .type_login {
+                text-align: center;
+                font: 300;
+                font-size: 2em;
+                margin-bottom: 60px;
+                color: white;
+                margin-top: 10px;
+                font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+              }
+
+              .style_form {
+                text-align: center;
+                font: 300;
+                font-family: 1.2em;
+
+              }
+
+              #fname {
+                margin-bottom: 20px;
+                width: 400px;
+                height: 40px;
+                border: none;
+                border-radius: 12px;
+              }
+
+              #lname {
+                width: 400px;
+                height: 40px;
+                border: none;
+                border-radius: 12px;
+              }
+
+              #style_namef {
+                margin-right: 300px;
+
+              }
+
+              #style_namel {
+                margin-right: 335px;
+
+              }
+
+              #button_set {
+                margin-top: 20px;
+                width: 100px;
+                height: 40px;
+                border: solid rgb(48, 62, 74);
+                background-color: rgb(60, 104, 119);
+                border-radius: 20px;
+                font-size: 1.2em;
+                color: white;
+                font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+
+
+              }
+
+              #style_or {
+                margin-top: 40px;
+                text-align: center;
+                font-size: 0.8em;
+              }
+
+
+              #button_drive {
+                margin-top: 40px;
+                margin-left: 130px;
+                margin-bottom: 20px;
+                width: 400px;
+                height: 40px;
+                border: solid rgb(131, 208, 244);
+                background-color: rgb(114, 181, 239);
+
+              }
+              #button_fb {
+
+                margin-left: 130px;
+                width: 400px;
+                height: 40px;
+                border: solid rgb(34, 102, 227);
+                background-color: rgb(16, 86, 236);
+
+              }
+
+              .box1 {
+                background-color: rgb(196, 232, 189);
+                padding : 20px;
+                text-align: center;
+                margin-bottom: 20px;
+                margin-left: 130px;
+                width: 400px;
+                height: 40px;
+                border-radius: 3px;
+
+              }
+                .box2 {
+                background-color: rgb(240, 151, 124);
+                padding : 20px;
+                text-align: center;
+                margin-bottom: 20px;
+                margin-left: 130px;
+                width: 400px;
+                height: 40px;
+                border-radius: 3px;
+
+              }
+
+              .text1 {
+               text-align: center;
+                color : rgb(32, 81, 22);
+                margin-top: -10px;
+}
+
+             
+{% endblock %}
+
+  {% block content %}
+        <nav>
+            <img class="image", src="https://mswebappcdn.azureedge.net/episerverprod/0145c95d01fc4fd889ff0d603c83f214/828ee3b287be4d419f33cf65d1d96ec3.png" alt="Ảnh minh họa">
+        </nav>
+        <article>
+
+
+            <div class="box">
+                <h1 class="type_login">Đăng nhập</h1>
+
+
+<!--                      <p class="text1">Chao em</p>-->
+                     {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            {% for m in messages %}
+                              {% with valid = VALID %}
+                                {% if valid %}
+
+                                  <div class="box1">
+                                            <p class="text1">{{m}}</p>
+                                  </div>
+                                {% else %}
+                                   <div class="box2">
+                                            <p class="text1">{{m}}</p>
+                                  </div>
+                                {% endif %}
+                              {% endwith %}
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+
+                <form class="style_form" method="post" action="{{ url_for('login_hello') }}">
+                    <label id="style_namef" for="fname">Tên đăng nhập:</label><br>
+                    <input type="text" id="fname" name="username" placeholder="username..."><br>
+                    <label id="style_namel" for="lname">Mật khẩu:</label><br>
+                    <input type="text" id="lname" name="password" placeholder="password..."><br><br>
+                    <input id="button_set" type="submit" value="Login">
+                  </form>
+
+                  <h2 id="style_or" >_________________OR_________________</h2> <br>
+
+
+                <input id="button_drive" type="submit" value="Đăng nhập bằng google drive"><br>
+                <input id="button_fb" type="submit" value="Đăng nhập bằng facebook"><br>
+
+
+
+            </div>
+
+
+
+
+
+
+        </article>
+    {% endblock %}

@@ -1,0 +1,217 @@
+{% extends 'layout/base.html' %}
+{% block title %}home{% endblock %}
+  {% block hello %}
+     <div class="st_logo">
+      <img src="https://cdn.haitrieu.com/wp-content/uploads/2021/09/Logo-DH-Bach-Khoa-HCMUT.png" width="30px" height="30px" style="margin-right: 10px; margin-bottom:2px;" alt="">
+      <h6 style="margin-top: 4px">Hello {{ user1 }}</h6>
+    </div>
+     
+
+    {% endblock %}
+{% block content %}
+
+<header>
+<nav>
+  <div>
+
+  <h1 class="st_h1"  >CAMERA SECURE</h1>
+    <!-- <button onclick="document.getElementById('idod').style.display='block'">switch</button> -->
+
+
+    <script>
+        function tai_lai_trang(){
+            location.reload();
+        }
+    </script>
+<!--   <div>  <img id="idod" style="display: block" width="50px" height="50px" src="static/images/Anh_0.jpg"  alt="anh la">-->
+<!--   </div>-->
+
+
+  <div class="box_1">
+       
+     <img src="{{ url_for('video') }}" width="720px" height="570px" style="margin-right: 10px" alt="">
+      <button class="btn_2" type="button" onclick="tai_lai_trang()">Cut Face</button>
+  </div>
+  </div>
+</nav>
+<article class="type_login">
+    <h1 class="st_h1">INFORMATION USER</h1>
+    <div class="box_2">
+        <div class="items">
+          <div class="item">
+            <div class="temp_1">
+              <h1>Staff A</h1>
+               <div>
+<!--                  <img src="https://nghenghiep.vieclam24h.vn/wp-content/uploads/2019/07/viec-lam-nhan-vien-tu-van-can-nhung-to-chat-nao-1.png" width="100px" height="120px" alt="nv1">-->
+                  <img class="st_img" style="display: block" width="100px" height="120px" src="static/images/Anh_0.jpg"  alt="anh la">
+                   <h4 class="ok">Normal</h4>
+               </div>
+               
+            </div>
+            <div class="detail">
+               
+              <h2 class="st_nd">Chi tiet nguoi dung</h2> <br>
+              <button class="btn_1">Next</button>
+  
+  
+            </div>
+
+          </div>
+          
+       
+
+          <div class="item">
+            <div class="temp_1">
+              <h1>Staff B</h1>
+               <div>
+<!--                  <img src="https://nghenghiep.vieclam24h.vn/wp-content/uploads/2019/07/viec-lam-nhan-vien-tu-van-can-nhung-to-chat-nao-1.png" width="100px" height="120px" alt="nv1">-->
+<!--                      <img id="idod" style="display: block" width="100px" height="120px" src="static/images/Anh_0.jpg"  alt="anh la">-->
+                   <img class="st_img" style="display: block" width="100px" height="120px" src="static/images/Anh_1.jpg"  alt="anh la">
+
+                   <h4 class="ok">Normal</h4>
+               </div>
+            </div>
+
+            <div class="detail">
+               
+              <h2 class="st_nd">Chi tiet nguoi dung</h2> <br>
+              <button class="btn_1">Next</button>
+  
+  
+            </div>
+
+          </div>
+
+          <div class="item">
+            <div class="temp_1">
+              <h1>Staff C</h1>
+               <div>
+<!--                  <img src="https://nghenghiep.vieclam24h.vn/wp-content/uploads/2019/07/viec-lam-nhan-vien-tu-van-can-nhung-to-chat-nao-1.png" width="100px" height="120px" alt="nv1">-->
+                  <img class="st_img" style="display: block" width="100px" height="120px" src="static/images/Anh_2.jpg"  alt="anh la">
+                   <h4 class="nook">Warning: no mask</h4>
+               </div>
+            </div>
+
+            <div class="detail">
+               
+              <h2 class="st_nd">Chi tiet nguoi dung</h2> <br>
+              <button class="btn_1">Next</button>
+  
+  
+            </div>
+
+          </div>
+
+          <div class="item">
+            <div class="temp_1">
+              <h1>Staff D</h1>
+               <div>
+<!--                  <img src="https://nghenghiep.vieclam24h.vn/wp-content/uploads/2019/07/viec-lam-nhan-vien-tu-van-can-nhung-to-chat-nao-1.png" width="10  0px" height="120px" alt="nv1">-->
+                    <img class="st_img" style="display: block" width="100px" height="120px" src="static/images/Anh_3.jpg"  alt="anh la">
+                  <h4 class="nook">Warning: no mask</h4>
+               </div>
+            </div>
+
+            <div class="detail">
+               
+              <h2 class="st_nd">Chi tiet nguoi dung</h2> <br>
+              <button class="btn_1">Next</button>
+  
+  
+            </div>
+
+          </div>
+    
+
+        </div>
+       
+
+    </div>
+</article>
+</header>
+
+
+<footer>
+    <div class="box_3">
+
+        <h1 class="st_h1">LIST USER</h1>
+
+    </div>
+
+    <div class="st_ex">
+      <h5>You want to export to Excel</h5>
+      <button class="btn_4">Export</button>
+    </div>
+    <div>
+      
+         <table class="container" cellpadding="10">
+                <thead>
+                  <tr>
+                    <th><h1 class="st_name">STT</h1></th>
+                    <th><h1 class="st_name">EMPLOYEE</h1></th>
+                    <th><h1 class="st_name">DEPARTMENT</h1></th>
+                    <th><h1 class="st_name">STATUS</h1></th>
+                    <th><h1 class="st_name">CREARED DATE</h1></th>
+                    <th><h1 class="st_name">DETAIL</h1></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>1</td>
+                    <td>Hieu</td>
+                    <td>AI</td>
+                    <td>No mask</td>
+                    <td>01:32:50</td>
+                    <td><button class="btn_3">Next</button></td>
+                  </tr>
+                  <tr>
+                    <td>2</td>
+                    <td>Hieu</td>
+                    <td>AI</td>
+                    <td>No mask</td>
+                    <td>01:32:50</td>
+                    <td><button class="btn_3">Next</button></td>
+                  </tr>
+                  <tr>
+                    <td>3</td>
+                    <td>Hieu</td>
+                    <td>AI</td>
+                    <td>No mask</td>
+                    <td>01:32:50</td>
+                    <td><button class="btn_3">Next</button></td>
+                  </tr>
+                  <tr>
+                    <td>4</td>
+                    <td>Hieu</td>
+                    <td>AI</td>
+                    <td>No mask</td>
+                    <td>01:32:50</td>
+                    <td><button class="btn_3">Next</button></td>
+              
+                  </tr>
+                  <tr>
+                    <td>5</td>
+                    <td>Hieu</td>
+                    <td>AI</td>
+                    <td>No mask</td>
+                    <td>01:32:50</td>
+                    <td><button class="btn_3">Next</button></td>
+                  </tr>
+                  <tr>
+                    <td>6</td>
+                    <td>Hieu</td>
+                    <td>AI</td>
+                    <td>No mask</td>
+                    <td>01:32:50</td>
+                    <td><button class="btn_3">Next</button></td>
+                  </tr>
+                </tbody>
+              </table>
+              
+    </div>
+</footer>
+
+
+
+
+  {% endblock %}
