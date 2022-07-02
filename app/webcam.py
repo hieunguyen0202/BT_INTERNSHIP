@@ -4,7 +4,7 @@ from app.file_main import app
 from keras.models import load_model
 from keras.preprocessing import image
 import keras
-import tensorflow as tf
+
 import numpy as np
 
 from keras.applications.mobilenet_v2 import preprocess_input
@@ -41,7 +41,7 @@ def generate_frames():
             # determine the class label and color we'll use to draw
             # the bounding box and text
             label = "Mask" if mask > withoutMask else "No Mask"
-
+            face_img = frame[startY + 3: endY - 3, startX + 3: endX - 3]
             image_faces_size = cv2.resize(frame[startY + 3: endY - 3, startX + 3: endX - 3], (100, 120))
             # cv2.imwrite('static/images/Anh_{}.jpg'.format(count), image_faces_size)
 
@@ -141,6 +141,8 @@ def detect_and_predict_mask(frame, faceNet, maskNet):
 	# return a 2-tuple of the face locations and their corresponding
 	# locations
 	return (locs, preds)
+
+
 
 @app.route('/hoa')
 def index():

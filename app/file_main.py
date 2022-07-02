@@ -4,9 +4,14 @@ from datetime import timedelta
 from sqlalchemy import Column, Integer, String, Boolean, ForeignKey, Float, DateTime, Boolean, Enum
 from datetime import datetime
 from enum import Enum as UserEnum
+# from flask_admin import Admin
+# from app.admin import *
 from os import path
 import hashlib
 import query
+# day la train model
+import cv2
+
 
 
 
@@ -18,8 +23,8 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.permanent_session_lifetime = timedelta(minutes=30)
 
 db = SQLAlchemy(app=app)
-
-
+# admin = Admin(app=app, name='Manage User', template_mode='bootstrap4')
+Predict = 0
 class UserRole(UserEnum):
     ADMIN = 1
     USER = 2
@@ -57,7 +62,7 @@ def check_login(username, password):
 
 @app.route('/home')
 def home():
-    return render_template("layout/Homepage.html")
+    return render_template("layout/Homepage.html",display_signup = True)
 
 
 @app.route('/manage')
@@ -88,7 +93,7 @@ def sign_up():
                 flash("You sign up successfully", "info")
                 return render_template("layout/login.html", user =user_name, VALID=True)
 
-    return render_template("layout/signup.html")
+    return render_template("layout/signup.html", display_signup=False)
 
 
 @app.route('/login', methods=["POST", "GET"])
@@ -106,7 +111,7 @@ def login_hello():
             return render_template("layout/login.html", VALID=False)
 
 
-    return render_template("layout/login.html",VALID=True)
+    return render_template("layout/login.html",VALID=True,display_signup = True)
 
 
 @app.route('/logout')
@@ -115,14 +120,62 @@ def hello_logout():
     session.pop("user", None)
     return redirect(url_for("login_hello"))
 
+
+from keras.models import load_model
+import numpy as np
+import tensorflow as tf
+
+
+model = load_model("model_train_face.h5")
+face_detector = cv2.CascadeClassifier('haarcascades/haarcascade_frontalface_default.xml')
+img = cv2.imread('static/images/146442277_756401631941367_7119192181113375909_n.jpg')
+img_gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
+
+# def Process_face():
+#     face = face_detector.detectMultiScale(img_gray, scaleFactor=1.3, minNeighbors=5)
+#     for (x, y, w, h) in face:
+#         face_img = img[y: y + h, x: x + w]
+#         cv2.imwrite('Hienthi.jpg', face_img)
+#         test_image = tf.keras.utils.load_img('Hienthi.jpg', target_size=(150, 150, 3))
+#         test_image = tf.keras.utils.img_to_array(test_image)
+#         test_image = np.expand_dims(test_image, axis=0)
+#         predict_image = model.predict(test_image)[0][0]
+#     return predict_image
+
+
+
 @app.route("/user", methods = ['get', 'post'])
 def user():
+    name_user = ""
+    dep_user = ""
     # labl = user.query.get(1)
     # labl = labl.status
     flash("ban da dang nhap thanh cong")
     if "user1" in session:
         name = session["user1"]
-        return render_template("layout/user.html", user1= name, display=True,msg="ok")
+        face = face_detector.detectMultiScale(img_gray, scaleFactor=1.3, minNeighbors=5)
+
+        for (x, y, w, h) in face:
+            face_img = img[y: y + h, x: x + w]
+            cv2.imwrite('Hienthi.jpg', face_img)
+            test_image = tf.keras.utils.load_img('Hienthi.jpg', target_size=(150, 150, 3))
+            test_image = tf.keras.utils.img_to_array(test_image)
+            test_image = np.expand_dims(test_image, axis=0)
+            predict_image = model.predict(test_image)[0][0]
+            # Predict = Process_face()
+            if predict_image == 1:
+                name_list = User.query.get(2)
+                name_user = name_list.username
+                dep_user = name_list.department
+            else:
+                name_list = User.query.get(1)
+                name_user = name_list.username
+                dep_user = name_list.department
+        return render_template("layout/user.html", user1= name, display=True,msg="ok",display_signup=True,name_user = name_user,dep_user = dep_user)
+
+
+
+
 
 
 #

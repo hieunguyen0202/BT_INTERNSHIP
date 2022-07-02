@@ -6,27 +6,33 @@ header {
 
 .box_1 {
    
- 
+    margin-left:-60px ;
     background-color: rgb(40, 48, 62);
-    width: 760px;
-    height: 610px;  
-    margin: 90px 40px 40px;
+    width: 620px;
+    height: 590px;  
+    margin: 58px 40px 40px;
     border-radius: 10px;
     border: 20px solid rgb(19, 88, 162);
+    /* padding: 40px; */
 
 }
 .box_2 {
    
-   
+    
     background-color: rgb(19, 88, 162);
     width: 600px;
     height: 600px;  
-    margin: 95px 15px 60px;
+    margin: 55px 8px 60px;
     border-radius: 10px;
     padding-top: 19px;
     
 
 
+}
+
+.overal {
+    display: flex;
+    justify-content: space-between;
 }
 nav h1 {
  margin-top: 20px;
@@ -87,6 +93,7 @@ div.item {
     height: 50%;
     padding: 1px 3px 5px 3px ;
     position: relative;
+    margin-top: -25px;
    
     
     
@@ -109,14 +116,16 @@ div.items {
 
 .st_logo {
     display: flex;
+    margin-top: 40px;
+    margin-right:20px ;
 }
 .btn_1 {
     height: 50px;
     width: 70px;
     background-color: rgb(161, 214, 234);
-    margin-top: 90px;
-    margin-left: 200px;
-    border-radius: 40px;
+    margin-top: 0px;
+    margin-left: 0px;
+    border-radius: 4px;
 
 }
 .btn_2 {
@@ -134,17 +143,20 @@ div.items {
 
 }
 .btn_3 {
-    height: 40px;
-    width: 100px;
+    height: 30px;
+    width: 70px;
     background-color: rgb(8, 64, 123);
     margin-top: 0px;
     margin-bottom: 5px;
     margin-left: 200px;
-    border-radius: 40px;
+    border-radius: 5px;
     margin-top: 28px;
     margin-left: 20px;
     font-size: 12px;
     color: #f7f7f0;
+    position: relative;
+    bottom: 15px;
+    right: 15px;
 
 }
 .btn_4 {
@@ -159,6 +171,9 @@ div.items {
     color: #f7f7f0;
     /* margin-right: 60px; */
 
+}
+.btn_4:hover {
+    background-color: #b7f6b7;
 }
 
 .st_ex {
@@ -176,13 +191,14 @@ footer h5 {
     background-color: rgba(59, 105, 245, 0.9) !important;
     text-align: center;
     position: absolute;
-    top: 0;
-    bottom: 5px;
+    top: 20px;
+    bottom: 10px;
     right: 3px;
     left: 3px;
     /* display: none; */
     opacity: 0;
     transition: opacity 1s;
+    height: 268px;
     
 }
 
@@ -206,13 +222,92 @@ div.item:hover .detail {
 }
 
 
+.st_btn_vid {
+  
+    display: flex;
+    justify-content: space-between;
+   
+}
+.btn_vid_cut {
+    
+   
+}
+.btn_vid_off {
+    
+}
+
+.btn_vid {
+    width: 291px;
+    height: 60px;
+    padding-top: 2px;
+    position: relative;
+    bottom: 4px;
+    border: 3px solid rgb(153, 190, 225);
+    background-color:rgb(8, 64, 123) ;
+    color:white;
+    /* margin-bottom: 10px; */
+}
+.btn_vid:hover {
+   background-color: rgb(130, 180, 245);
+}
+
+
+/* the switch */
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+}
+
+
+
+.pagination_item--active .pagination_link {
+    background-color: rgb(231, 212, 13);
+    color: #fff;
+
+}
+
+.pagination_item {
+    margin: 20px 5px ;
+
+}
+
+.pagination_link {
+    display: block;
+    text-decoration: none;
+    font-size: 1.6rem;
+    color: rgb(231, 212, 13);
+    min-width: 30px;
+    height: 30px;
+    text-align: center;
+   line-height: 30px;
+   border-radius: 2px;
+
+}
+
+.pagination_item-icon {
+   font-size: 1.9rem;
+}
+.pagination_big {
+    position: relative;
+    bottom: 27px;
+}
+
+/* end switch */
+
+
+
+
+
  @import url(https://fonts.googleapis.com/css?family=Open+Sans:300,400,700);
             .blue { color: #185875; }
             .yellow { color: #4868a2; }
 
             .container th h1 {
                 font-weight: bold;
-                font-size: 1.6em;
+                font-size: 1.3em;
             text-align: center;
             color: #f1f7fa;
             }
@@ -231,7 +326,7 @@ div.item:hover .detail {
                 width: 100%;
                 margin: 10px auto;
                 display: table;
-                padding: 0 0 8em 0;
+                padding: 0 0 1em 0;
             }
 
             .container td, .container th {
@@ -290,3 +385,117 @@ div.item:hover .detail {
 
 
 
+    @keyframes fadeID {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+    
+        }
+    }
+    
+    @keyframes growth {
+        from {
+            transform: scale(var(--grow-from));
+        }
+        to {
+            transform: scale(var(--grow-to));
+    
+        }
+    }
+            
+
+    /* modal */
+        .modal_detail {
+            position: fixed;
+            top:0;
+            right: 0;
+            left:0;
+            bottom:0;
+            display: flex;
+            display: none;
+            animation: fadeID ease-in 1s;
+           
+
+
+        }
+
+        .modal_olay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(49, 42, 42, 0.4);
+            z-index: 1;
+            
+
+        }
+
+        .modal_detail_body {
+            /* width: 700px;
+            height: 600px; */
+            --grow-from : 0.5;
+            --grow-to: 1;
+            background-color: rgb(207, 232, 243);
+            margin: auto;
+            position: relative;
+            z-index: 2;
+            border-radius: 5px;
+            /* animation */
+            animation: growth ease-in 1s ;
+            padding: 30px 60px;
+            width: 465px;
+            height: 330px;
+            margin-top: 200px;
+
+        }
+
+
+        .section {
+            display: flex;
+            text-align: center;
+            
+        }
+        .name_modal {
+            display: flex;
+            margin: 15px;
+            margin-top: -25px;
+            margin-bottom: -25px;
+        }
+
+        .information {
+            
+                position: relative;
+                left: 15px;
+        }
+
+        .btn_close {
+            height: 30px;
+            width: 70px;
+            background-color: rgb(8, 64, 123);
+            margin-top: 0px;
+            margin-bottom: 5px;
+            margin-left: 200px;
+            border-radius: 5px;
+            margin-top: 28px;
+            margin-left: 20px;
+            font-size: 12px;
+            color: #f7f7f0;
+            position: relative;
+            bottom: 15px;
+            right: 15px;
+            
+        }
+        .btn_close_modal {
+                text-align: center;
+                position: relative;
+                top:10px;
+        }
+
+        .btn_close:hover {
+            background-color: rgb(130, 180, 245);
+        }
+        .st_title_modal {
+            position: relative;
+            bottom: 25px;
+        }

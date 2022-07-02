@@ -11,123 +11,182 @@
 {% block content %}
 
 <header>
-<nav>
-  <div>
 
-  <h1 class="st_h1"  >CAMERA SECURE</h1>
-    <!-- <button onclick="document.getElementById('idod').style.display='block'">switch</button> -->
+   <div class="overal">
 
+     <div class="class1">
+        <nav>
+                    <div>
 
-    <script>
-        function tai_lai_trang(){
-            location.reload();
-        }
-    </script>
-<!--   <div>  <img id="idod" style="display: block" width="50px" height="50px" src="static/images/Anh_0.jpg"  alt="anh la">-->
-<!--   </div>-->
+                    <h1 class="st_h1"  >CAMERA SECURE</h1>
+                      <!-- <button onclick="document.getElementById('idod').style.display='block'">switch</button> -->
 
 
-  <div class="box_1">
-       
-     <img src="{{ url_for('video') }}" width="720px" height="570px" style="margin-right: 10px" alt="">
-      <button class="btn_2" type="button" onclick="tai_lai_trang()">Cut Face</button>
-  </div>
-  </div>
-</nav>
-<article class="type_login">
-    <h1 class="st_h1">INFORMATION USER</h1>
-    <div class="box_2">
-        <div class="items">
-          <div class="item">
-            <div class="temp_1">
-              <h1>Staff A</h1>
-               <div>
-<!--                  <img src="https://nghenghiep.vieclam24h.vn/wp-content/uploads/2019/07/viec-lam-nhan-vien-tu-van-can-nhung-to-chat-nao-1.png" width="100px" height="120px" alt="nv1">-->
-                  <img class="st_img" style="display: block" width="100px" height="120px" src="static/images/Anh_0.jpg"  alt="anh la">
-                   <h4 class="ok">Normal</h4>
-               </div>
-               
-            </div>
-            <div class="detail">
-               
-              <h2 class="st_nd">Chi tiet nguoi dung</h2> <br>
-              <button class="btn_1">Next</button>
-  
-  
-            </div>
+                      <script>
+                          function tai_lai_trang(){
+                              location.reload();
+                          }
+                      </script>
+                  <!--   <div>  <img id="idod" style="display: block" width="50px" height="50px" src="static/images/Anh_0.jpg"  alt="anh la">-->
+                  <!--   </div>-->
 
-          </div>
-          
-       
 
-          <div class="item">
-            <div class="temp_1">
-              <h1>Staff B</h1>
-               <div>
-<!--                  <img src="https://nghenghiep.vieclam24h.vn/wp-content/uploads/2019/07/viec-lam-nhan-vien-tu-van-can-nhung-to-chat-nao-1.png" width="100px" height="120px" alt="nv1">-->
-<!--                      <img id="idod" style="display: block" width="100px" height="120px" src="static/images/Anh_0.jpg"  alt="anh la">-->
-                   <img class="st_img" style="display: block" width="100px" height="120px" src="static/images/Anh_1.jpg"  alt="anh la">
+                    <div class="box_1">
+                        
+                      <img src="{{ url_for('video') }}" width="580px" height="490px" style="margin-right: 10px" alt="">
+                        <!-- <button class="btn_2" type="button" onclick="tai_lai_trang()">Cut Face</button> -->
 
-                   <h4 class="ok">Normal</h4>
-               </div>
-            </div>
+                        <div class="st_btn_vid">
+                          <button class="btn_vid btn_vid_cut" onclick="tai_lai_trang()">CUT IMAGE</button>
+                          <button class="btn_vid btn_vid_off" onclick="document.getElementById('id_cam').style.display='block'">CAMRERA</button>
+                            
+                        </div>
+                    </div>
+                    </div>
+        </nav>
+     </div>
 
-            <div class="detail">
-               
-              <h2 class="st_nd">Chi tiet nguoi dung</h2> <br>
-              <button class="btn_1">Next</button>
-  
-  
-            </div>
+     <div class="class2">
+        <article class="type_login">
+                        <h1 class="st_h1">INFORMATION USER</h1>
+                        <div class="box_2">
+                            <div class="items">
+                              <div class="item">
+                                <div class="temp_1">
+                                  <h1>Staff A</h1>
+                                  <div>
+                    <!--                  <img src="https://nghenghiep.vieclam24h.vn/wp-content/uploads/2019/07/viec-lam-nhan-vien-tu-van-can-nhung-to-chat-nao-1.png" width="100px" height="120px" alt="nv1">-->
+                                      <img class="st_img" style="display: block" width="100px" height="120px" src="static/images/Anh_0.jpg"  alt="anh la">
+                                      <h4 class="ok">Normal</h4>
+                                  </div>
+                                  
+                                </div>
+                                <div class="detail">
+                                  
+                                  <h2 class="st_nd">Chi tiet nguoi dung</h2> <br>
+                                  <button class="btn_1" id="myBtn" >Next</button>
+                      
+                      
+                                </div>
 
-          </div>
+                              </div>
+                              
+                          
 
-          <div class="item">
-            <div class="temp_1">
-              <h1>Staff C</h1>
-               <div>
-<!--                  <img src="https://nghenghiep.vieclam24h.vn/wp-content/uploads/2019/07/viec-lam-nhan-vien-tu-van-can-nhung-to-chat-nao-1.png" width="100px" height="120px" alt="nv1">-->
-                  <img class="st_img" style="display: block" width="100px" height="120px" src="static/images/Anh_2.jpg"  alt="anh la">
-                   <h4 class="nook">Warning: no mask</h4>
-               </div>
-            </div>
+                              <div class="item">
+                                <div class="temp_1">
+                                  <h1>Staff B</h1>
+                                  <div>
+                    <!--                  <img src="https://nghenghiep.vieclam24h.vn/wp-content/uploads/2019/07/viec-lam-nhan-vien-tu-van-can-nhung-to-chat-nao-1.png" width="100px" height="120px" alt="nv1">-->
+                    <!--                      <img id="idod" style="display: block" width="100px" height="120px" src="static/images/Anh_0.jpg"  alt="anh la">-->
+                                      <img class="st_img" style="display: block" width="100px" height="120px" src="static/images/Anh_1.jpg"  alt="anh la">
 
-            <div class="detail">
-               
-              <h2 class="st_nd">Chi tiet nguoi dung</h2> <br>
-              <button class="btn_1">Next</button>
-  
-  
-            </div>
+                                      <h4 class="ok">Normal</h4>
+                                  </div>
+                                </div>
 
-          </div>
+                                <div class="detail">
+                                  
+                                  <h2 class="st_nd">Chi tiet nguoi dung</h2> <br>
+                                  <button class="btn_1">Next</button>
+                      
+                      
+                                </div>
 
-          <div class="item">
-            <div class="temp_1">
-              <h1>Staff D</h1>
-               <div>
-<!--                  <img src="https://nghenghiep.vieclam24h.vn/wp-content/uploads/2019/07/viec-lam-nhan-vien-tu-van-can-nhung-to-chat-nao-1.png" width="10  0px" height="120px" alt="nv1">-->
-                    <img class="st_img" style="display: block" width="100px" height="120px" src="static/images/Anh_3.jpg"  alt="anh la">
-                  <h4 class="nook">Warning: no mask</h4>
-               </div>
-            </div>
+                              </div>
 
-            <div class="detail">
-               
-              <h2 class="st_nd">Chi tiet nguoi dung</h2> <br>
-              <button class="btn_1">Next</button>
-  
-  
-            </div>
+                              <div class="item">
+                                <div class="temp_1">
+                                  <h1>Staff C</h1>
+                                  <div>
+                    <!--                  <img src="https://nghenghiep.vieclam24h.vn/wp-content/uploads/2019/07/viec-lam-nhan-vien-tu-van-can-nhung-to-chat-nao-1.png" width="100px" height="120px" alt="nv1">-->
+                                      <img class="st_img" style="display: block" width="100px" height="120px" src="static/images/Anh_2.jpg"  alt="anh la">
+                                      <h4 class="nook">Warning: no mask</h4>
+                                  </div>
+                                </div>
 
-          </div>
+                                <div class="detail">
+                                  
+                                  <h2 class="st_nd">Chi tiet nguoi dung</h2> <br>
+                                  <button class="btn_1">Next</button>
+                      
+                      
+                                </div>
+
+                              </div>
+
+                              <div class="item">
+                                <div class="temp_1">
+                                  <h1>Staff D</h1>
+                                  <div>
+                    <!--                  <img src="https://nghenghiep.vieclam24h.vn/wp-content/uploads/2019/07/viec-lam-nhan-vien-tu-van-can-nhung-to-chat-nao-1.png" width="10  0px" height="120px" alt="nv1">-->
+                                        <img class="st_img" style="display: block" width="100px" height="120px" src="static/images/Anh_3.jpg"  alt="anh la">
+                                      <h4 class="nook">Warning: no mask</h4>
+                                  </div>
+                                </div>
+
+                                <div class="detail">
+                                  
+                                  <h2 class="st_nd">Chi tiet nguoi dung</h2> <br>
+                                  <button class="btn_1">Next</button>
+                      
+                      
+                                </div>
+
+                              </div>
+                        
+
+                            </div>
+                          
+                       
+                                <!-- switch page -->
+                            <div>
+
+                              <div class="pagination_big">
+
+                                <ul class="pagination">
+                                    <li class="pagination_item ">
+                                        <a href="" class="pagination_link">
+                                            <i class="pagination_item-icon fa-solid fa-angles-left"></i>
+                                        </a>
+                                    </li>
+        
+                                    <li class="pagination_item pagination_item--active">
+                                        <a href="" class="pagination_link">1</a>
+                                    </li>
+        
+                                    <li class="pagination_item">
+                                        <a href="" class="pagination_link">2</a>
+                                    </li>
+        
+                                    <li class="pagination_item">
+                                        <a href="" class="pagination_link">3</a>
+                                    </li>
+        
+                                    <li class="pagination_item">
+                                        <a href="" class="pagination_link">4</a>
+                                    </li>
+        
+        
+        
+                                    <li class="pagination_item">
+                                        <a href="" class="pagination_link">
+                                        
+                                            <i class="pagination_item-icon fa-solid fa-angles-right"></i>
+                                    
+                                        </a>
+                                    </li>
+                                </ul>
+        
+                            </div>
+                            </div>
+                            <!-- the end switch -->
+
+                        </div>
+        </article>
+     </div>
     
-
-        </div>
-       
-
     </div>
-</article>
 </header>
 
 
@@ -144,7 +203,7 @@
     </div>
     <div>
       
-         <table class="container" cellpadding="10">
+         <table class="container" cellpadding="3">
                 <thead>
                   <tr>
                     <th><h1 class="st_name">STT</h1></th>
@@ -158,8 +217,8 @@
                 <tbody>
                   <tr>
                     <td>1</td>
-                    <td>Hieu</td>
-                    <td>AI</td>
+                    <td>{{name_user}}</td>
+                    <td>{{dep_user}}</td>
                     <td>No mask</td>
                     <td>01:32:50</td>
                     <td><button class="btn_3">Next</button></td>
@@ -209,9 +268,100 @@
               </table>
               
     </div>
+
+         <!-- Creat Modal for Detail User -->
+
+               <div class="modal_detail" id="myModal">
+                    <div class="modal_olay">
+             
+                    </div>
+                                  
+                    <div class="modal_detail_body">
+                              <h2 class="st_h1 st_title_modal">INFORMATION STAFF</h2>
+                        <div class="section">
+                                  <div class="modal_img">
+                                    <img width="80px" height="100px" src="https://tiemanhsky.com/wp-content/uploads/2020/03/61103071_2361422507447925_6222318223514140672_n_1.jpg" alt="">
+                                </div>
+
+                                <div class="information">
+                                    
+                                        <div class="name_modal">
+                                            <h4 class="name_st">Staff's name :</h4>
+                                            <h4 class="name_respon">Nguyen Van Hieu</h4>
+                                        </div>
+                                        <div class="name_modal">
+                                          <h4 class="name_st">Date birth :</h4>
+                                          <h4 class="name_respon">22/02/1999</h4>
+                                      </div>
+                                      <div class="name_modal">
+                                        <h4 class="name_st">Department :</h4>
+                                        <h4 class="name_respon">Marketing</h4>
+                                    </div>
+                                </div>
+
+                                
+
+                        </div>
+
+                        <div class="btn_close_modal">
+                          <button class="close btn_close">CLOSE</button>
+                        </div>
+                           
+                        
+                          
+                            
+                    </div>
+
+                   
+
+
+
+
+               </div>
+
+           <!-- Creat Modal for Detail User -->
+
+                <div>
+                  
+                </div>
+
+
 </footer>
 
+{% block script %}
 
+<script>
+
+      /* lấy phần tử modal */
+            var modal = document.getElementById("myModal");
+              /* thiết lập nút mở modal */
+            var btn = document.getElementById("myBtn");
+            /* thiết lập nút đóng modal */
+            var span = document.getElementsByClassName("close")[0];
+            /* Sẽ hiển thị modal khi người dùng click vào */
+            btn.onclick = function() {
+            modal.style.display = "block";
+            }
+            /* Sẽ đóng modal khi nhấn dấu x */
+            span.onclick = function() {
+            modal.style.display = "none";
+            }
+            /*Sẽ đóng modal khi nhấp ra ngoài màn hình*/
+           
+            window.onclick = function(event) {
+            if (event.target == modal) {
+              modal.style.display = "none";
+              }
+            }
+
+</script>
+    
+      
+   
+{% endblock %}
 
 
   {% endblock %}
+
+
+
