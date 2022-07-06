@@ -234,6 +234,8 @@ background-color: rgb(205, 227, 247);
 }
 .st_btn {
   text-align: center;
+  position: relative;
+  bottom: 25px;
 
 }
 
@@ -255,4 +257,16 @@ background-color: rgb(205, 227, 247);
   margin-top: 30px;
   
 
+}
+
+.st_img {
+  position: relative;
+  right:36px;
+  top:10px;
+  
+}
+ .st_up {
+  position: relative;
+  top: 10px;
+  
 }

@@ -221,6 +221,8 @@ div.item:hover .detail {
 
 .st_img {
     margin-left: 55px;
+    position: relative;
+    left:0px;
 }
 
 

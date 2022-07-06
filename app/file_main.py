@@ -37,7 +37,7 @@ app.config['MAIL_USE_TLS'] = False
 app.config['MAIL_USE_SSL'] = True
 mail = Mail(app)
 
-
+app.config['UPLOAD_FOLDER'] = "static/upload"
 # class MyAdmin(AdminIndexView):
 #     @expose('/')
 #     def index(self):
@@ -162,7 +162,13 @@ def sign_up():
         datebirth = request.form["date_birth"]
         department = request.form["department"]
         user_role = request.form["user_role"]
-
+        image_file = request.files["myFile"]
+        # upload
+        path_to_save = os.path.join(app.config['UPLOAD_FOLDER'], image_file.filename)
+        image_file.save(path_to_save)
+        imag = cv2.imread(path_to_save)
+        cv2.imwrite('static/upload/{}.jpg'.format(email), imag)
+        # upload
         password = hashlib.md5(str(password).encode("utf-8")).hexdigest()
         session.permanent = True
         if email:
@@ -223,11 +229,11 @@ def hello_logout():
 from keras.models import load_model
 import numpy as np
 import tensorflow as tf
-
+import os
 
 model = load_model("model_train_face.h5")
 face_detector = cv2.CascadeClassifier('haarcascades/haarcascade_frontalface_default.xml')
-img = cv2.imread('static/images/146442277_756401631941367_7119192181113375909_n.jpg')
+img = cv2.imread('static/images/kim-jung-hyun-da-huy-hoai-cuoc-doi-cua-seo-hyun-snsd-ffc4f693 (1).jpg')
 img_gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
 
 
@@ -247,10 +253,12 @@ def user():
         face = face_detector.detectMultiScale(img_gray, scaleFactor=1.3, minNeighbors=5)
         if request.method == "POST":
             camera_m = request.form.get('camera')
+
             if camera_m == "oncam":
                 camera = True
             else:
                 camera = False
+
 
         for (x, y, w, h) in face:
             face_img = img[y: y + h, x: x + w]
@@ -261,15 +269,19 @@ def user():
             predict_image = model.predict(test_image)[0][0]
             # Predict = Process_face()
             if predict_image == 1:
-                name_list = User.query.get(2)
+                name_list = User.query.get(11)
                 name_user = name_list.username
                 dep_user = name_list.department
+                date_birth = name_list.date_birth
+                email = name_list.email
             else:
-                name_list = User.query.get(1)
+                name_list = User.query.get(12)
                 name_user = name_list.username
                 dep_user = name_list.department
+                date_birth = name_list.date_birth
+                email = name_list.email
 
-        return render_template("layout/user.html", user1= name, display=True,msg="ok",display_signup=True,name_user = name_user,dep_user = dep_user,came=camera,valid=role)
+        return render_template("layout/user.html", user1= name, display=True,msg="ok",display_signup=True,name_user = name_user,dep_user = dep_user,came=camera,valid=role,date_birth=date_birth,email=email)
 
 
 

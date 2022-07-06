@@ -76,7 +76,7 @@
                                 <div class="detail">
                                   
                                   <h2 class="st_nd">Chi tiet nguoi dung</h2> <br>
-                                  <button class="btn_1" id="myBtn" >Next</button>
+                                  <button class="btn_1" >Next</button>
                       
                       
                                 </div>
@@ -109,7 +109,7 @@
 
                               <div class="item">
                                 <div class="temp_1">
-                                  <h1>Staff C</h1>
+                                  <h1>{{name_user}}</h1>
                                   <div>
                     <!--                  <img src="https://nghenghiep.vieclam24h.vn/wp-content/uploads/2019/07/viec-lam-nhan-vien-tu-van-can-nhung-to-chat-nao-1.png" width="100px" height="120px" alt="nv1">-->
                                       <img class="st_img" style="display: block" width="100px" height="120px" src="static/images/Anh_2.jpg"  alt="anh la">
@@ -120,7 +120,7 @@
                                 <div class="detail">
                                   
                                   <h2 class="st_nd">Chi tiet nguoi dung</h2> <br>
-                                  <button class="btn_1">Next</button>
+                                  <button class="btn_1" id="myBtn" >Next</button>
                       
                       
                                 </div>
@@ -243,7 +243,7 @@
                     <th class="st_h1_c">{{dep_user}}</th>
                     <th class="st_h1_c">No mask</th>
                     <th class="st_h1_c">01:32:50</th>
-                    <th class="st_h1_c"><button class="btn_3">Next</button></th>
+                    <th class="st_h1_c"><button class="btn_3" id="myBtn">Next</button></th>
                   </tr>
                   <tr>
                     <th class="st_h1_c">2</th>
@@ -303,22 +303,23 @@
                               <h2 class="st_h1 st_title_modal">INFORMATION STAFF</h2>
                         <div class="section">
                                   <div class="modal_img">
-                                    <img width="80px" height="100px" src="https://tiemanhsky.com/wp-content/uploads/2020/03/61103071_2361422507447925_6222318223514140672_n_1.jpg" alt="">
+                                    <img width="80px" height="100px" src="static/upload/{{email}}.jpg" alt="">
+                                    <!-- <img width="80px" height="100px" src="https://tiemanhsky.com/wp-content/uploads/2020/03/61103071_2361422507447925_6222318223514140672_n_1.jpg" alt=""> -->
                                 </div>
 
                                 <div class="information">
                                     
                                         <div class="name_modal">
                                             <h4 class="name_st">Staff's name :</h4>
-                                            <h4 class="name_respon">Nguyen Van Hieu</h4>
+                                            <h4 class="name_respon">{{name_user}}</h4>
                                         </div>
                                         <div class="name_modal">
                                           <h4 class="name_st">Date birth :</h4>
-                                          <h4 class="name_respon">22/02/1999</h4>
+                                          <h4 class="name_respon">{{date_birth}}</h4>
                                       </div>
                                       <div class="name_modal">
                                         <h4 class="name_st">Department :</h4>
-                                        <h4 class="name_respon">Marketing</h4>
+                                        <h4 class="name_respon">{{dep_user}}</h4>
                                     </div>
                                 </div>
 

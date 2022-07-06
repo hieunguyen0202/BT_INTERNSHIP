@@ -1,6 +1,6 @@
 {% extends 'layout/base.html' %}
 {% block title %}Sign up{% endblock %}
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 {% block style %}
      
@@ -25,7 +25,7 @@
               </div>
 
             <div class="body_body">
-                  <form class="content" action="#" method="post">
+                  <form class="content" action="#" method="post" enctype="multipart/form-data">
                     <div class="container_body">
                         
                       <div class="name_date">
@@ -83,19 +83,21 @@
             
                                   <div  class="verify_s2">
                                     <label style="margin-left: 0;margin-right: 30px;margin-bottom: 20px;"><b> Please upload your image!!!</b></label> 
-                                    <div class="st_icon_face" >
+                                    <!-- <div class="st_icon_face" >
                                       <i class="icon_st fa-solid fa-face-grin-wide"></i>
-                                    </div><br>
-                            
-                                    <input type="file" name="myFile">
-                                    
+                                    </div><br> -->
+                                      <div style="display: block" >
+                                          <img src="" alt="" id="image" width="152px" height="152px" class="st_img" >
+                                      </div><br>
+                                    <input type="file" name="myFile" accept="image/gif, image/jpeg, image/png" onchange="chooseFile(this)">
+                                
                                   </div>
 
                             </div>
                       
 
                     </div>
-                    <div class="st_btn">
+                    <div class="st_up st_btn">
                       <button class="btn_click" type="submit" class="signup" style="margin-top:40px">Sign Up</button>
                     </div>
                       
@@ -112,7 +114,18 @@
      
  </div>
 
+  <script>
+    function chooseFile(fileInput) {
+      if (fileInput.files && fileInput.files[0]) {
+        var reader = new FileReader();
 
+        reader.onload = function (e) {
+          $('#image').attr('src', e.target.result);
+        }
+        reader.readAsDataURL(fileInput.files[0]);
+      }
+    }
+  </script>
 
 
 
