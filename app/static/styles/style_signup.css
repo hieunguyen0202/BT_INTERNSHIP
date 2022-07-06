@@ -127,7 +127,7 @@ background-color: rgb(205, 227, 247);
     margin: auto;
     position: relative;
     top:-950px;
-    border-radius: 15px;
+    border-radius: 5px;
 
 }
 
@@ -150,12 +150,14 @@ background-color: rgb(205, 227, 247);
 
 .date_body {
   margin-right: 190px;
+  position: relative;
+  left: 70px;
 }
 .st_date {
   margin-top: 10px;
   font-size: 20px;
   color: #190eed;
-
+ 
 }
 
 /* signup */
@@ -183,6 +185,16 @@ background-color: rgb(205, 227, 247);
   border: none;
   background: #f1f1f1;
   
+}
+.st_input_role {
+  width: 150px;
+  padding: 13px;
+  position: relative;
+  /* display: inline-block; */
+  border: none;
+  background: #f1f1f1;
+  right: 13px;
+  top: 7px;
 }
 
 

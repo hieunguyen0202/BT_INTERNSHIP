@@ -47,6 +47,8 @@
                 height: 40px;
                 border: none;
                 border-radius: 12px;
+                
+                
               }
 
               #lname {
@@ -58,12 +60,17 @@
 
               #style_namef {
                 margin-right: 300px;
+                position: relative;
+                right: 15px;
+                bottom:5px;
 
               }
 
               #style_namel {
                 margin-right: 335px;
-
+                position: relative;
+                bottom:5px;
+                left:15px;
               }
 
               #button_set {
@@ -80,6 +87,11 @@
 
               }
 
+              #button_set:hover {
+                background-color:rgb(130, 180, 245);
+              }
+
+
               #style_or {
                 margin-top: 40px;
                 text-align: center;
@@ -95,6 +107,7 @@
                 height: 40px;
                 border: solid rgb(131, 208, 244);
                 background-color: rgb(114, 181, 239);
+                border-radius: 5px;
 
               }
               #button_fb {
@@ -104,7 +117,7 @@
                 height: 40px;
                 border: solid rgb(34, 102, 227);
                 background-color: rgb(16, 86, 236);
-
+                border-radius: 5px;
               }
 
               .box1 {
@@ -135,11 +148,52 @@
                 color : rgb(32, 81, 22);
                 margin-top: -10px;
 }
+              .st_admin {
+                display: flex;
+                text-align: center;
+                position: relative;
+                left: 150px;
+              }
+              .st_admin-role {
+                margin-left: 30px;
+                width: 67px;
+                height: 30px;
+                border-radius:5px;
+                color: white;
+                background-color:rgb(56, 68, 74);
+                position: relative;
+                top: 16px;
+                border: 1px solid white;
+              }
+              .st_cocial {
+                position: relative;
+                right: 6px;
+                bottom:20px;
+              }
 
+              .st_forget {
+                position: relative;
+                bottom: 15px;
+              }
+              .st_fr {
+                text-decoration: none;
+                color: white;
+              }
+              .st_fr: hover {
+                background-color:rgb(8, 64, 123);
+              }
+              .st_kc {
+                background-color: white;
+                width:auto;
+                height:1px;
+              }
              
 {% endblock %}
 
   {% block content %}
+  <div class="st_kc">
+
+  </div>
         <nav>
             <img class="image", src="https://mswebappcdn.azureedge.net/episerverprod/0145c95d01fc4fd889ff0d603c83f214/828ee3b287be4d419f33cf65d1d96ec3.png" alt="Ảnh minh họa">
         </nav>
@@ -171,18 +225,33 @@
                     {% endwith %}
 
                 <form class="style_form" method="post" action="{{ url_for('login_hello') }}">
-                    <label id="style_namef" for="fname">Tên đăng nhập:</label><br>
-                    <input type="text" id="fname" name="username" placeholder="username..."><br>
-                    <label id="style_namel" for="lname">Mật khẩu:</label><br>
-                    <input type="text" id="lname" name="password" placeholder="password..."><br><br>
-                    <input id="button_set" type="submit" value="Login">
+                    <label id="style_namef" for="fname">
+                      <i class="fa-solid fa-user"></i> Email:</label><br>
+                    <input type="text" id="fname" name="email" placeholder="Email..."><br>
+                    <label id="style_namel" for="lname"><i class="fa-solid fa-key"></i> Password:</label><br>
+                    <input type="password" id="lname" name="password" placeholder="password..."><br><br>
+<!--                    moi them-->
+                  <div class="st_admin"> <h5 class="st_admin-lbl">If you is Admin, you want to Login with ?</h5>
+                    <select name="user_role" class="st_admin-role" id="" required>
+                              <option> USER </option>
+                              <option> ADMIN </option>
+                            </select><br></div><br>
+                            <div class="st_forget">
+                              <a class="st_fr" href="/forget_pass">Forget password ?</a>
+                            </div>
+                   
+<!--                    moi them-->
+
+                    <input id="button_set" class="st_hover" type="submit" value="Login">
                   </form>
 
-                  <h2 id="style_or" >_________________OR_________________</h2> <br>
+                  <!-- <h2 id="style_or" >-OR-</h2> <br> -->
 
-
-                <input id="button_drive" type="submit" value="Đăng nhập bằng google drive"><br>
-                <input id="button_fb" type="submit" value="Đăng nhập bằng facebook"><br>
+                  <div class="st_cocial" style="display: none">
+                    <input id="button_drive" type="submit" value="Đăng nhập bằng google drive"><br>
+                    <input id="button_fb" type="submit" value="Đăng nhập bằng facebook"><br>
+                  </div>
+               
 
 
 

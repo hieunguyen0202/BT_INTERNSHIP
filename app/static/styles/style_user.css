@@ -179,6 +179,8 @@ div.items {
 .st_ex {
     display: flex;
     margin-left: 937px;
+    position: relative;
+    left:70px;
 }
 footer h5 {
     margin-top: 7px;
@@ -237,7 +239,7 @@ div.item:hover .detail {
 }
 
 .btn_vid {
-    width: 291px;
+    width: 194px;
     height: 60px;
     padding-top: 2px;
     position: relative;
@@ -347,11 +349,12 @@ div.item:hover .detail {
 
 
             /* Chỉnh màu chữ của bảng */
-            .container th {
-                background-color: #0376a0;
+            .st_h1_c {
+                background-color: #348cac;
+                color: rgb(245, 242, 235);
             }
 
-            .container td:first-child { color: #03070b; }
+            .container td:first-child { color: #050b10; }
 
             .container tr:hover {
             background-color: #6a919a;
@@ -381,8 +384,11 @@ div.item:hover .detail {
 
             .st_name {
                 text-align: center;
+                
             }
-
+            .st_title {
+                background-color: #296078;
+            }
 
 
     @keyframes fadeID {
@@ -498,4 +504,19 @@ div.item:hover .detail {
         .st_title_modal {
             position: relative;
             bottom: 25px;
+        }
+        .st_fil {
+            display: flex;
+            position: relative;
+            top:55px;
+            left: 20px;
+        }
+        .st_fil h5 {
+            margin-right:  20px;
+            
+        }
+        .input_search {
+            margin-right:  20px;
+            width: 250px;
+            height: 30px;
         }

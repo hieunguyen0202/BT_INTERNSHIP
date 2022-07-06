@@ -10,15 +10,15 @@ class UserRole(UserEnum):
 
 # class User1(db.Model):
 #     user_id = db.Column(db.Integer, primary_key= True)
-#     username = Column(db.String(50), nullable=False, unique=True)
+#     username = Column(db.String(50), nullable=False)
 #     password = Column(db.String(50), nullable=False)
-#     email = db.Column(db.String(100))
+#     email = db.Column(db.String(100), unique=True )
 #     date_birth = db.Column(db.String(100))
 #     active = Column(Boolean, default=True)
 #     department = Column(db.String(100))
 #     status = Column(db.String(100))
 #     joined_date = Column(DateTime, default=datetime.now())
-#     user_role = Column(Enum(UserRole), default=UserRole.USER)
+#     user_role = Column(Enum(UserRole))
 #     def __init__(self, username,password, email,date_birth, department):
 #         self.username = username
 #         self.password = password

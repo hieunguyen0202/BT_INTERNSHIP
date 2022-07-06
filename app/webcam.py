@@ -16,6 +16,7 @@ from app.file_main import db,user
 
 
 
+
 # load our serialized face detector model from disk
 prototxtPath = r"face_detector\deploy.prototxt"
 weightsPath = r"face_detector\res10_300x300_ssd_iter_140000.caffemodel"
@@ -27,10 +28,41 @@ maskNet = load_model("mask_detector.model")
 
 text_dis = []
 camera = cv2.VideoCapture(0)
+camera1 = cv2.VideoCapture("include_image/cam2.gif")
 # face_detector = cv2.CascadeClassifier('haarcascades/haarcascade_frontalface_default.xml')
+
+
+
+
+# @app.route('/cam', methods=["POST", "GET"])
+# def cam():
+#     # on/off camera
+#     if request.method == "POST":
+#         camera_m = request.form.get('camera')
+#         if camera_m == "oncam":
+#             camera = cv2.VideoCapture(0)
+#         else:
+#             camera = cv2.VideoCapture("include_image/cam2.gif")
+#     return camera
+
+    # on/of camera
+def offcam():
+    while True:
+        ret, cam = camera1.read()
+        if not ret:
+            break
+        else:
+            ret, buffer1 = cv2.imencode('.jpg', cam)
+            cam = buffer1.tobytes()
+
+        yield (b'--cam\r\n'
+               b'Content-Type: image/jpeg\r\n\r\n' + cam + b'\r\n')
+
+
 
 def generate_frames():
     while True:
+
         success,frame = camera.read()
         frame = imutils.resize(frame, width=400)
         (locs, preds) = detect_and_predict_mask(frame, faceNet, maskNet)
@@ -152,6 +184,10 @@ def index():
 @app.route('/video')
 def video():
     return Response(generate_frames(),mimetype='multipart/x-mixed-replace; boundary=frame')
+
+@app.route('/offvideo')
+def offvideo():
+    return Response(offcam(),mimetype='multipart/x-mixed-replace; boundary=cam')
 
 if __name__ == "__main__":
     app.run(debug=True)

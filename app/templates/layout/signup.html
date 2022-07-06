@@ -32,14 +32,21 @@
                         
                         <div class="name_body">
                           <label for="username"><b>Username</b></label>
-                          <input class="input_name" type="text"  placeholder="Enter username..." name="name" >
+                          <input class="input_name" type="text"  placeholder="Enter username..." name="name" required>
                         </div>
 
                         <div class="date_body">
                           <label ><b>Date Birth</b></label> <br>
                           <input class="st_date" type="date" placeholder="Enter date birth..." name="date_birth" required>
                         </div>
-                      
+                          <div>
+                            <label ><b>Role</b></label> 
+                            <select name="user_role" class="st_input_role" id="" required>
+                              <option> USER </option>
+                              <option> ADMIN </option>
+                            </select>
+                              
+                          </div>
                       </div>
 
 
@@ -47,13 +54,19 @@
                       <div class="signup">
 
                           <label for="email"><b>Email</b></label><br>
-                          <input class="st_input" type="text" placeholder="Enter email..." name="email">
+                          <input class="st_input" type="email" placeholder="Enter email..." name="email"required>
                           <br>
                           <label for="psw"><b>Password</b></label><br>
-                          <input class="st_input" type="password" placeholder="Enter Password" name="password" >
+                          <input class="st_input" type="password" placeholder="Enter Password" name="password" required>
                           <br>
                           <label for="department"><b>Department</b></label><br>
-                          <input class="st_input" type="text" placeholder="Enter department..." name="department" >
+                          <!-- <input class="st_input" type="text" placeholder="Enter department..." name="department" required> -->
+                          <select name="department" class="st_input" id="">
+                            <option> Marketing </option>
+                            <option> Mainternance </option>
+                            <option> Human Resource </option>
+                            <option> Technology </option>
+                          </select>
                       </div>
                     
 

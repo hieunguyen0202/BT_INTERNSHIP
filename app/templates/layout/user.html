@@ -3,10 +3,12 @@
   {% block hello %}
      <div class="st_logo">
       <img src="https://cdn.haitrieu.com/wp-content/uploads/2021/09/Logo-DH-Bach-Khoa-HCMUT.png" width="30px" height="30px" style="margin-right: 10px; margin-bottom:2px;" alt="">
-      <h6 style="margin-top: 4px">Hello {{ user1 }}</h6>
+      <h6 style="margin-top: 4px">HELLO {{ user1 }}</h6>
     </div>
-     
-
+    
+    <!-- <script>
+   
+    </script> -->
     {% endblock %}
 {% block content %}
 
@@ -22,23 +24,33 @@
                       <!-- <button onclick="document.getElementById('idod').style.display='block'">switch</button> -->
 
 
-                      <script>
-                          function tai_lai_trang(){
-                              location.reload();
-                          }
-                      </script>
                   <!--   <div>  <img id="idod" style="display: block" width="50px" height="50px" src="static/images/Anh_0.jpg"  alt="anh la">-->
                   <!--   </div>-->
 
 
                     <div class="box_1">
-                        
+
+                      {% with cam = came %} 
+                      {% if cam %}
                       <img src="{{ url_for('video') }}" width="580px" height="490px" style="margin-right: 10px" alt="">
                         <!-- <button class="btn_2" type="button" onclick="tai_lai_trang()">Cut Face</button> -->
-
+                      {% else %}
+                      <img src="{{ url_for('offvideo') }}" width="580px" height="490px" style="margin-right: 10px" alt="">
+                      {% endif %}
+                      {% endwith %}
                         <div class="st_btn_vid">
-                          <button class="btn_vid btn_vid_cut" onclick="tai_lai_trang()">CUT IMAGE</button>
-                          <button class="btn_vid btn_vid_off" onclick="document.getElementById('id_cam').style.display='block'">CAMRERA</button>
+                          <div>
+                            <input type="text" name="ok" id="oknha" value="oknha" style="display : none">
+                          <button class="btn_vid btn_vid_cut"  onclick=tai_lai_trang()>CUT IMAGE</button></div>
+                          
+                          <form action="#" method="post">
+                            <input type="text" value="oncam" style="display : none" name="camera">
+                            <button class="btn_vid btn_vid_off" type="submit" >CAMRERA</button></form>
+                          <form action="#" method="post">
+                            <input type="text" value="offcam" style="display : none" name="camera">
+                            <button class="btn_vid btn_vid_off" type="submit">OFF CAMRERA</button>
+                          </form>
+                          
                             
                         </div>
                     </div>
@@ -196,77 +208,88 @@
         <h1 class="st_h1">LIST USER</h1>
 
     </div>
-
-    <div class="st_ex">
-      <h5>You want to export to Excel</h5>
-      <button class="btn_4">Export</button>
-    </div>
+     <div class="st_filter_ex">
+       <!-- section filter -->
+       <div class="st_fil">
+        <h5><i class="fa-solid fa-magnifying-glass"></i> You can search in here  </h5>
+        <input id="myInput" type="text" placeholder=" Please search in here..." class="input_search">
+       </div>
+        
+         
+      <!-- section export -->
+        <div class="st_ex">
+          <h5>You want to export to Excel</h5>
+          <button class="btn_4">Export</button>
+        </div>
+     </div>
+    
     <div>
-      
+      <!-- <input id="myInput" type="text" placeholder="Please search in here..." class="input_search"> -->
          <table class="container" cellpadding="3">
                 <thead>
                   <tr>
-                    <th><h1 class="st_name">STT</h1></th>
-                    <th><h1 class="st_name">EMPLOYEE</h1></th>
-                    <th><h1 class="st_name">DEPARTMENT</h1></th>
-                    <th><h1 class="st_name">STATUS</h1></th>
-                    <th><h1 class="st_name">CREARED DATE</h1></th>
-                    <th><h1 class="st_name">DETAIL</h1></th>
+                    <th class="st_title"><h1 class="st_name">STT</h1></th>
+                    <th class="st_title"><h1 class="st_name">EMPLOYEE</h1></th>
+                    <th class="st_title"><h1 class="st_name">DEPARTMENT</h1></th>
+                    <th class="st_title"><h1 class="st_name">STATUS</h1></th>
+                    <th class="st_title"><h1 class="st_name">CREARED DATE</h1></th>
+                    <th class="st_title"><h1 class="st_name">DETAIL</h1></th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody id="myTable">
                   <tr>
-                    <td>1</td>
-                    <td>{{name_user}}</td>
-                    <td>{{dep_user}}</td>
-                    <td>No mask</td>
-                    <td>01:32:50</td>
-                    <td><button class="btn_3">Next</button></td>
+                    <th class="st_h1_c">1</th>
+                    <th class="st_h1_c">{{name_user}}</th>
+                    <th class="st_h1_c">{{dep_user}}</th>
+                    <th class="st_h1_c">No mask</th>
+                    <th class="st_h1_c">01:32:50</th>
+                    <th class="st_h1_c"><button class="btn_3">Next</button></th>
                   </tr>
                   <tr>
-                    <td>2</td>
-                    <td>Hieu</td>
-                    <td>AI</td>
-                    <td>No mask</td>
-                    <td>01:32:50</td>
-                    <td><button class="btn_3">Next</button></td>
+                    <th class="st_h1_c">2</th>
+                    <th class="st_h1_c">Hieu</th>
+                    <th class="st_h1_c">AI</th>
+                    <th class="st_h1_c">Have mask</th>
+                    <th class="st_h1_c">01:32:50</th>
+                    <th class="st_h1_c"><button class="btn_3">Next</button></th>
                   </tr>
                   <tr>
-                    <td>3</td>
-                    <td>Hieu</td>
-                    <td>AI</td>
-                    <td>No mask</td>
-                    <td>01:32:50</td>
-                    <td><button class="btn_3">Next</button></td>
+                    <th class="st_h1_c">3</th>
+                    <th class="st_h1_c">Toan</th>
+                    <th class="st_h1_c">AI</th>
+                    <th class="st_h1_c">No mask</th>
+                    <th class="st_h1_c">01:32:50</th>
+                    <th class="st_h1_c"><button class="btn_3">Next</button></th>
                   </tr>
                   <tr>
-                    <td>4</td>
-                    <td>Hieu</td>
-                    <td>AI</td>
-                    <td>No mask</td>
-                    <td>01:32:50</td>
-                    <td><button class="btn_3">Next</button></td>
+                    <th class="st_h1_c">4</th>
+                    <th class="st_h1_c">Sinh</th>
+                    <th class="st_h1_c">AI</th>
+                    <th class="st_h1_c">No mask</th>
+                    <th class="st_h1_c">01:32:50</th>
+                    <th ><button class="btn_3">Next</button></th>
               
                   </tr>
                   <tr>
-                    <td>5</td>
-                    <td>Hieu</td>
-                    <td>AI</td>
-                    <td>No mask</td>
-                    <td>01:32:50</td>
-                    <td><button class="btn_3">Next</button></td>
+                    <th class="st_h1_c">5</th>
+                    <th class="st_h1_c">Hien</th>
+                    <th class="st_h1_c">AI</th>
+                    <th class="st_h1_c">Have Mask</th>
+                    <th class="st_h1_c">01:32:50</th>
+                    <th class="st_h1_c"><button class="btn_3">Next</button></th>
                   </tr>
                   <tr>
-                    <td>6</td>
-                    <td>Hieu</td>
-                    <td>AI</td>
-                    <td>No mask</td>
-                    <td>01:32:50</td>
-                    <td><button class="btn_3">Next</button></td>
+                    <th class="st_h1_c">6</th>
+                    <th class="st_h1_c">Triet</th>
+                    <th class="st_h1_c">AI</th>
+                    <th class="st_h1_c">Have Mask</th>
+                    <th class="st_h1_c">01:32:50</th>
+                    <th class="st_h1_c"><button class="btn_3">Next</button></th>
                   </tr>
                 </tbody>
               </table>
               
+         
     </div>
 
          <!-- Creat Modal for Detail User -->
@@ -353,6 +376,41 @@
               modal.style.display = "none";
               }
             }
+            function tai_lai_trang(){
+                      location.reload();
+                          }
+            // var value = ""
+            //   var buton = document.getElementById("onlick_btn");
+            //   var iput = document.getElementById("oknha").value;
+            //   var value = iput;
+            //   if (value == "oknha" && buton.onclick == true) 
+            //   {
+            //     location.reload();
+            //   }
+                  
+              // buton.onclick = function(){
+              //          location.reload();
+              //               }         
+
+            // function myFunction() {
+            //     document.getElementById("cam").value = "oncam";
+                
+
+            //     }
+            //     function myFunction1() {
+            //     document.getElementById("cam").value = "offcam";
+                
+                
+            //     }
+
+            $(document).ready(function(){
+              $("#myInput").on("keyup", function(){
+                var value = $(this).val().toLowerCase();
+                $("#myTable tr").filter(function(){
+                  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+                });
+              });
+            });
 
 </script>
     
