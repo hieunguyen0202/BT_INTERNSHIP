@@ -1,0 +1,146 @@
+[
+    {
+        "STT": 0,
+        "Name": "Email",
+        "Time": "Time",
+        "UserName": "Name",
+        "Department": "Department",
+        "DateBirth": "Day Birth"
+    },
+    {
+        "STT": 1,
+        "Name": "XUANHIEU123@GMAIL.COM",
+        "Time": "21:28:26",
+        "UserName": "Xu\u00e2n Hi\u1ebfu",
+        "Department": "Human Resource",
+        "DateBirth": "2022-07-21"
+    },
+    {
+        "STT": 2,
+        "Name": "TRIET@GMAIL.COM",
+        "Time": "21:29:59",
+        "UserName": "Minh Tri\u1ebft",
+        "Department": "Human Resource",
+        "DateBirth": "2022-07-21"
+    },
+    {
+        "STT": 3,
+        "Name": "XUANHIEU123@GMAIL.COM",
+        "Time": "21:30:05",
+        "UserName": "Xu\u00e2n Hi\u1ebfu",
+        "Department": "Human Resource",
+        "DateBirth": "2022-07-21"
+    },
+    {
+        "STT": 4,
+        "Name": "HIEN123@GMAIL.COM",
+        "Time": "21:30:32",
+        "UserName": "Minh Hi\u1ec3n",
+        "Department": "Human Resource",
+        "DateBirth": "2001-11-12"
+    },
+    {
+        "STT": 5,
+        "Name": "XUANHIEU123@GMAIL.COM",
+        "Time": "21:30:49",
+        "UserName": "Xu\u00e2n Hi\u1ebfu",
+        "Department": "Human Resource",
+        "DateBirth": "2022-07-21"
+    },
+    {
+        "STT": 6,
+        "Name": "SEOHUYN@GMAIL.COM",
+        "Time": "21:31:22",
+        "UserName": "Seohuyn",
+        "Department": "Marketing",
+        "DateBirth": "2022-07-14"
+    },
+    {
+        "STT": 7,
+        "Name": "XUANHIEU123@GMAIL.COM",
+        "Time": "21:31:27",
+        "UserName": "Xu\u00e2n Hi\u1ebfu",
+        "Department": "Human Resource",
+        "DateBirth": "2022-07-21"
+    },
+    {
+        "STT": 8,
+        "Name": "TRIET@GMAIL.COM",
+        "Time": "21:34:38",
+        "UserName": "Minh Tri\u1ebft",
+        "Department": "Human Resource",
+        "DateBirth": "2022-07-21"
+    },
+    {
+        "STT": 9,
+        "Name": "XUANHIEU123@GMAIL.COM",
+        "Time": "21:34:42",
+        "UserName": "Xu\u00e2n Hi\u1ebfu",
+        "Department": "Human Resource",
+        "DateBirth": "2022-07-21"
+    },
+    {
+        "STT": 10,
+        "Name": "HIEN123@GMAIL.COM",
+        "Time": "21:34:58",
+        "UserName": "Minh Hi\u1ec3n",
+        "Department": "Human Resource",
+        "DateBirth": "2001-11-12"
+    },
+    {
+        "STT": 11,
+        "Name": "XUANHIEU123@GMAIL.COM",
+        "Time": "21:35:05",
+        "UserName": "Xu\u00e2n Hi\u1ebfu",
+        "Department": "Human Resource",
+        "DateBirth": "2022-07-21"
+    },
+    {
+        "STT": 12,
+        "Name": "TRIET@GMAIL.COM",
+        "Time": "21:36:03",
+        "UserName": "Minh Tri\u1ebft",
+        "Department": "Human Resource",
+        "DateBirth": "2022-07-21"
+    },
+    {
+        "STT": 13,
+        "Name": "SEOHUYN@GMAIL.COM",
+        "Time": "21:36:09",
+        "UserName": "Seohuyn",
+        "Department": "Marketing",
+        "DateBirth": "2022-07-14"
+    },
+    {
+        "STT": 14,
+        "Name": "XUANHIEU123@GMAIL.COM",
+        "Time": "21:36:20",
+        "UserName": "Xu\u00e2n Hi\u1ebfu",
+        "Department": "Human Resource",
+        "DateBirth": "2022-07-21"
+    },
+    {
+        "STT": 15,
+        "Name": "SEOHUYN@GMAIL.COM",
+        "Time": "21:44:14",
+        "UserName": "Seohuyn",
+        "Department": "Marketing",
+        "DateBirth": "2022-07-14"
+    },
+    {
+        "STT": 16,
+        "Name": "XUANHIEU123@GMAIL.COM",
+        "Time": "21:44:20",
+        "UserName": "Xu\u00e2n Hi\u1ebfu",
+        "Department": "Human Resource",
+        "DateBirth": "2022-07-21"
+    },
+    {
+        "STT": 17,
+        "Name": "TRIET@GMAIL.COM",
+        "Time": "21:44:39",
+        "UserName": "Minh Tri\u1ebft",
+        "Department": "Human Resource",
+        "DateBirth": "2022-07-21"
+    }
+]

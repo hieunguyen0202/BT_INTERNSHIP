@@ -522,3 +522,6 @@ div.item:hover .detail {
             width: 250px;
             height: 30px;
         }
+        .st_tieude {
+            background-color: rgb(130, 180, 245);
+        }

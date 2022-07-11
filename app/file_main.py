@@ -9,15 +9,29 @@ from flask_admin.contrib.sqla import ModelView
 from app.admin import *
 from os import path
 import hashlib
+import numpy as np
 import query
 # day la train model
 import cv2
 from flask_mail import Mail, Message
 from random import randrange
-
-
-
-
+# from webcam import recoginite_name
+# import face_recognition
+# import threading
+# import os
+# path = 'ImagesBasic'
+# images = []
+# classNames = []
+# myList = os.listdir(path)
+# print(myList)
+#
+#
+# for cl in myList:
+#     curImg = cv2.imread(f'{path}/{cl}')
+#     images.append(curImg)
+#     classNames.append(os.path.splitext(cl)[0])
+#
+# print(classNames)
 
 
 
@@ -76,6 +90,33 @@ class User(db.Model):
 
 
 
+# def findEncodings(image):
+#     encodeList = []
+#     for img in image:
+#         img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+#         encode = face_recognition.face_encodings(img)[0]
+#         encodeList.append(encode)
+#     return encodeList
+#
+# def markAttendance(name):
+#     with open('atten.csv', 'r+') as f:
+#         myDataList = f.readlines()
+#         # print(myDataList)
+#         nameList = []
+#         for line in myDataList:
+#             entry = line.split(',')
+#             nameList.append(entry[0])
+#         if name not in nameList:
+#             now = datetime.now()
+#             dtString = now.strftime('%H:%M:%S')
+#             f.writelines(f'\n{name},{dtString}')
+#
+# # nhan dien nguoi
+#
+#
+# encodeListKnown = findEncodings(images)
+
+
 
 
 admin.add_view(ModelView(User, db.session, name='Manage'))
@@ -100,6 +141,45 @@ def check_resetmail(email):
         return User.query.filter(User.email.__eq__(email.strip())).first()
 
     return None
+
+
+# test
+
+# def nhan_dang():
+#     while True:
+#             frame = cv2.imread('include_image/cam3.jpg')
+#             imgS = cv2.resize(frame, (0, 0), None, 0.25, 0.25)
+#             imgS = cv2.cvtColor(imgS, cv2.COLOR_BGR2RGB)
+#             facesCurFrame = face_recognition.face_locations(imgS)
+#             encodesCurFrame = face_recognition.face_encodings(imgS, facesCurFrame)
+#             for encodeFace, faceLoc in zip(encodesCurFrame, facesCurFrame):
+#                 matches = face_recognition.compare_faces(encodeListKnown, encodeFace)
+#                 faceDis = face_recognition.face_distance(encodeListKnown, encodeFace)
+#                 # print(faceDis)
+#                 matchIndex = np.argmin(faceDis)
+#                 if matches[matchIndex]:
+#                     name = classNames[matchIndex].upper()
+#                     # print(name)
+#                     y1, x2, y2, x1 = faceLoc
+#                     y1, x2, y2, x1 = y1 * 4, x2 * 4, y2 * 4, x1 * 4
+#                     cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
+#                     cv2.rectangle(frame, (x1, y2 - 35), (x2, y2), (0, 255, 0), cv2.FILLED)
+#                     cv2.putText(frame, name, (x1 + 6, y2 - 6), cv2.FONT_HERSHEY_COMPLEX, 1, (255, 255, 255), 2)
+#                     markAttendance(name)
+
+
+
+
+
+# test
+
+
+
+# def check_name_mail(name):
+#     if name:
+#         return User.query.filter(User.email.__eq__(name.strip())).first()
+#
+#     return None
 
 
 @app.route('/forget_pass', methods=['GET', 'POST'])
@@ -227,10 +307,11 @@ def hello_logout():
 
 
 from keras.models import load_model
-import numpy as np
+
 import tensorflow as tf
 import os
-
+import csv
+import json
 model = load_model("model_train_face.h5")
 face_detector = cv2.CascadeClassifier('haarcascades/haarcascade_frontalface_default.xml')
 img = cv2.imread('static/images/kim-jung-hyun-da-huy-hoai-cuoc-doi-cua-seo-hyun-snsd-ffc4f693 (1).jpg')
@@ -238,8 +319,12 @@ img_gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY)
 
 
 
+
+
+
 @app.route("/user", methods = ['get', 'post'])
 def user():
+
     camera = False
     name_user = ""
     dep_user = ""
@@ -256,9 +341,26 @@ def user():
 
             if camera_m == "oncam":
                 camera = True
+
             else:
                 camera = False
 
+
+        # if name_ds:
+        if name in session:
+            name_ds = session['name']
+            check_name_ok = User.query.filter_by(email=name_ds).first()
+            if check_name_ok:
+                date_birth = check_name_ok.date_birth
+                email = check_name_ok.email
+                name_user = check_name_ok.name_user
+                dep_user = check_name_ok.dep_user
+        else:
+                check_name_ok = User.query.filter_by(email='None').first()
+                date_birth = check_name_ok.date_birth
+                email = check_name_ok.email
+                name_user = check_name_ok.username
+                dep_user = check_name_ok.department
 
         for (x, y, w, h) in face:
             face_img = img[y: y + h, x: x + w]
@@ -268,18 +370,25 @@ def user():
             test_image = np.expand_dims(test_image, axis=0)
             predict_image = model.predict(test_image)[0][0]
             # Predict = Process_face()
-            if predict_image == 1:
-                name_list = User.query.get(11)
-                name_user = name_list.username
-                dep_user = name_list.department
-                date_birth = name_list.date_birth
-                email = name_list.email
-            else:
-                name_list = User.query.get(12)
-                name_user = name_list.username
-                dep_user = name_list.department
-                date_birth = name_list.date_birth
-                email = name_list.email
+            with open('static/images/new02.json', 'r') as f:
+                temp = json.load(f)
+                for entry in temp:
+                    name = entry["Name"]
+                    username = entry["UserName"]
+                    daybirth = entry["DateBirth"]
+                    dep = entry["Department"]
+            # if predict_image == 1:
+            #     name_list = User.query.get(11)
+            #     name_user = name_list.username
+            #     dep_user = name_list.department
+            #     date_birth = name_list.date_birth
+            #     email = name_list.email
+            # else:
+            # name_list = User.query.get(12)
+            name_user = username
+            dep_user = dep
+            date_birth = daybirth
+            email = name
 
         return render_template("layout/user.html", user1= name, display=True,msg="ok",display_signup=True,name_user = name_user,dep_user = dep_user,came=camera,valid=role,date_birth=date_birth,email=email)
 

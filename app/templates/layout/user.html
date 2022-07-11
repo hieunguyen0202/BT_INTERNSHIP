@@ -225,7 +225,7 @@
     
     <div>
       <!-- <input id="myInput" type="text" placeholder="Please search in here..." class="input_search"> -->
-         <table class="container" cellpadding="3">
+         <!-- <table class="container" cellpadding="3">
                 <thead>
                   <tr>
                     <th class="st_title"><h1 class="st_name">STT</h1></th>
@@ -287,7 +287,7 @@
                     <th class="st_h1_c"><button class="btn_3">Next</button></th>
                   </tr>
                 </tbody>
-              </table>
+              </table> -->
               
          
     </div>
@@ -350,6 +350,42 @@
                 </div>
 
 
+                <div>
+                  <table id="dssv1"  class="container" cellpadding="3" >
+                    <thead>
+                      <tr class="bg-info">
+                        <th class="st_tieude">STT</th>
+                        <th class="st_tieude">NAME</th>
+                        <th class="st_tieude">DEPARTMENT</th>
+                        <th class="st_tieude">EMAIL</th>
+                        <th class="st_tieude">DATE</th>
+  
+                    </tr>
+                    </thead>
+                    
+                  <tbody id="myTable1">
+          
+                  </tbody>
+                  </table>
+                </div>
+                
+                <script>
+                   $.ajax({
+                          type: "GET",
+                          url: "static/images/new02.json",
+                          dataType: "json",
+                          success: function(response) {
+                                response.forEach(sv => {
+                            
+                                  $("#myTable1").append("<tr><td>"+ sv['STT'] + "</td><td>" + sv['UserName'] + "</td><td>" + sv['Department'] + "</td><td>"  + sv['Name'] + "</td><td>" + sv['Time'] + "</td><tr>");
+                                  
+                              });
+                          }
+                      })
+                </script>
+           
+
+
 </footer>
 
 {% block script %}
@@ -407,12 +443,15 @@
             $(document).ready(function(){
               $("#myInput").on("keyup", function(){
                 var value = $(this).val().toLowerCase();
-                $("#myTable tr").filter(function(){
+                $("#myTable1 tr").filter(function(){
                   $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
                 });
               });
             });
 
+
+
+      
 </script>
     
       

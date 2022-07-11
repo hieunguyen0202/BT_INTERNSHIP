@@ -1,22 +1,27 @@
+import threading
+from file_main import User
 from flask import Flask, render_template,Response,redirect, url_for, request, session, flash
 import cv2
 from app.file_main import app
 from keras.models import load_model
 from keras.preprocessing import image
 import keras
-
+import face_recognition
+from datetime import datetime
 import numpy as np
-
+from sqlalchemy import Column, Integer, String, Boolean, ForeignKey, Float, DateTime, Boolean, Enum
 from keras.applications.mobilenet_v2 import preprocess_input
 from keras.utils import img_to_array
 from imutils.video import VideoStream
 import imutils
 import time
 from app.file_main import db,user
+import os
 
+import csv
+import json
 
-
-
+from threading import Thread
 # load our serialized face detector model from disk
 prototxtPath = r"face_detector\deploy.prototxt"
 weightsPath = r"face_detector\res10_300x300_ssd_iter_140000.caffemodel"
@@ -30,23 +35,134 @@ text_dis = []
 camera = cv2.VideoCapture(0)
 camera1 = cv2.VideoCapture("include_image/cam2.gif")
 # face_detector = cv2.CascadeClassifier('haarcascades/haarcascade_frontalface_default.xml')
+# recoginite_name = session['name']
+# nhan dien nguoi
+path = 'ImagesBasic'
+images = []
+classNames = []
+myList = os.listdir(path)
+print(myList)
+
+
+
+for cl in myList:
+    curImg = cv2.imread(f'{path}/{cl}')
+    images.append(curImg)
+    classNames.append(os.path.splitext(cl)[0])
+
+print(classNames)
+
+# def convert():
+#  while True:
+#     with open("atten.csv", "r+") as f:
+#         reader = csv.reader(f)
+#         data = []
+#
+#         for row in reader:
+#             if row[0] and row[1] == "":
+#                 data.append({'Name': 'none', 'Time': 'none'})
+#
+#             else:
+#                 data.append({'Name': row[0], 'Time': row[1]})
+#
+#
+#     with open("static/images/new02.json", "w+") as f:
+#         json.dump(data, f, indent=4)
+#
+# #
+# #
+# threadso1 = threading.Thread(target=convert)
+# threadso1.start()
 
 
 
 
-# @app.route('/cam', methods=["POST", "GET"])
-# def cam():
-#     # on/off camera
-#     if request.method == "POST":
-#         camera_m = request.form.get('camera')
-#         if camera_m == "oncam":
-#             camera = cv2.VideoCapture(0)
-#         else:
-#             camera = cv2.VideoCapture("include_image/cam2.gif")
-#     return camera
 
-    # on/of camera
+# def convert():
+#     with open("atten.csv", "r") as f:
+#         reader = csv.reader(f)
+#         data = []
+#         for row in reader:
+#             data.append({'Name': row[0], 'Time': row[1]})
+#
+#     with open("new.json", "w") as f:
+#         json.dump(data, f, indent=4)
+
+def findEncodings(image):
+    encodeList = []
+    for img in image:
+        img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+        encode = face_recognition.face_encodings(img)[0]
+        encodeList.append(encode)
+    return encodeList
+#
+# def markAttendance(name):
+#     with open('atten.csv', 'r+') as f:
+#         myDataList = f.readlines()
+#         # print(myDataList)
+#         nameList = []
+#         for line in myDataList:
+#             entry = line.split(',')
+#             nameList.append(entry[0])
+#         if name not in nameList:
+#             now = datetime.now()
+#             dtString = now.strftime('%H:%M:%S')
+#             f.writelines(f'\n{name},{dtString}')
+
+def ktraJson():
+    with open ('static/images/new02.json', 'r') as f:
+        temp = json.load(f)
+        for entry in temp:
+            name = entry["Name"]
+            stt = entry["STT"]
+
+    return name,stt
+
+
+def addfileJson(name):
+    now = datetime.now()
+    dtString = now.strftime('%H:%M:%S')
+    item_data = {}
+    with open ('static/images/new02.json', 'r') as f:
+        temp = json.load(f)
+        for entry in temp:
+            pre_name = entry["Name"]
+            stt = entry["STT"]
+
+    new_name = name
+    ktNewName = User.query.filter_by(email=new_name).first()
+
+    if name != pre_name:
+        with open ('static/images/new02.json', 'r') as f:
+            temp = json.load(f)
+        item_data["STT"] = stt + 1
+        item_data["Name"] = name
+        item_data["Time"] = dtString
+        if ktNewName:
+            item_data["UserName"] = ktNewName.username
+            item_data["Department"] = ktNewName.department
+            item_data["DateBirth"] = ktNewName.date_birth
+        else:
+            item_data["UserName"] = "none"
+            item_data["Department"] = "none"
+            item_data["DateBirth"] = "none"
+        temp.append(item_data)
+
+
+        with open ('static/images/new02.json', 'w') as f:
+            json.dump(temp, f, indent=4)
+
+
+
+# nhan dien nguoi
+
+
+encodeListKnown = findEncodings(images)
+
+stop_thread = threading.Event()
+
 def offcam():
+    # stop_thread.set()
     while True:
         ret, cam = camera1.read()
         if not ret:
@@ -60,10 +176,16 @@ def offcam():
 
 
 
+
+
+
 def generate_frames():
     while True:
-
         success,frame = camera.read()
+        # nhan dien nguoi
+        cv2.imwrite('include_image/cam3.jpg', frame)
+        # nhan dien nguoi
+        # khau trang
         frame = imutils.resize(frame, width=400)
         (locs, preds) = detect_and_predict_mask(frame, faceNet, maskNet)
         for (box, pred) in zip(locs, preds):
@@ -99,7 +221,7 @@ def generate_frames():
             cv2.rectangle(frame, (startX, startY), (endX, endY), color, 2)
             # cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 0, 255), 3)
             count = 0
-
+            # khau trang
 
 
         if not success:
@@ -111,6 +233,38 @@ def generate_frames():
         yield (b'--frame\r\n'
                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
+        # if stop_thread.is_set():
+        #     break
+
+def nhan_dang():
+    i = 0
+    while True:
+            time.sleep(5)
+            frame = cv2.imread('include_image/cam3.jpg')
+            imgS = cv2.resize(frame, (0, 0), None, 0.25, 0.25)
+            imgS = cv2.cvtColor(imgS, cv2.COLOR_BGR2RGB)
+            facesCurFrame = face_recognition.face_locations(imgS)
+            encodesCurFrame = face_recognition.face_encodings(imgS, facesCurFrame)
+            for encodeFace, faceLoc in zip(encodesCurFrame, facesCurFrame):
+                matches = face_recognition.compare_faces(encodeListKnown, encodeFace)
+                faceDis = face_recognition.face_distance(encodeListKnown, encodeFace)
+                # print(faceDis)
+                matchIndex = np.argmin(faceDis)
+                if matches[matchIndex]:
+                    name = classNames[matchIndex].upper()
+                    # print(name)
+                    y1, x2, y2, x1 = faceLoc
+                    y1, x2, y2, x1 = y1 * 4, x2 * 4, y2 * 4, x1 * 4
+                    cv2.rectangle(frame, (x1, y1), (x2, y2), (0, 255, 0), 2)
+                    cv2.rectangle(frame, (x1, y2 - 35), (x2, y2), (0, 255, 0), cv2.FILLED)
+                    cv2.putText(frame, name, (x1 + 6, y2 - 6), cv2.FONT_HERSHEY_COMPLEX, 1, (255, 255, 255), 2)
+
+                    addfileJson(name)
+
+
+
+thread10 = Thread(target=nhan_dang)
+thread10.start()
 
 def detect_and_predict_mask(frame, faceNet, maskNet):
 	# grab the dimensions of the frame and then construct a blob
